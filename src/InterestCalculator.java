@@ -45,10 +45,10 @@ public class InterestCalculator {
     (LocalDate currentDate,LocalDate endDate, double principal, double yearReturn, double monthlyAmount, boolean interestOrPrincipal){
         double totalInterestAccrued=0;
         //converting apy to apr
-        yearReturn=(Math.pow((1+yearReturn),1.0/12.0)-1)*12;
+        double dailyRate=(Math.pow((1+yearReturn),1.0/365.0)-1);
         
         while(!currentDate.equals(endDate)){
-            double interestAccured=principal*(yearReturn/365);
+            double interestAccured=principal*dailyRate;
             totalInterestAccrued+=interestAccured;
             principal+=interestAccured;
             if(currentDate.getMonthValue()!=currentDate.plusDays(1).getMonthValue()){
